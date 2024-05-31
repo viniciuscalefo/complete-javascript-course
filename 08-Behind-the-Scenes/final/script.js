@@ -90,7 +90,7 @@ console.log(z === window.z);
 
 
 ///////////////////////////////////////
-// The this Keyword in Practice
+ The this Keyword in Practice
 console.log(this);
 
 const calcAge = function (birthYear) {
@@ -107,10 +107,16 @@ calcAgeArrow(1980);
 
 const jonas = {
   year: 1991,
+  grades:[10,21,24,78,6],
   calcAge: function () {
     console.log(this);
     console.log(2037 - this.year);
   },
+  calcGrades:function(){
+    this.grades.forEach((e,i) =>{
+      console.log(`Nota ${i+1} : ${e} `)
+    })
+  }
 };
 jonas.calcAge();
 
@@ -123,6 +129,8 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f();
+jonas.calcGrades()*/
+/*
 
 
 ///////////////////////////////////////
