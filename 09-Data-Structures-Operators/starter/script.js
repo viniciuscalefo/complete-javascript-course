@@ -40,52 +40,38 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function(mainIngredient , ...otherIngredient){
+    console.log(mainIngredient)
+    console.log(otherIngredient)
+  }
 };
 
-/*SPREAD OPERATOR */
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+const rest1 = {
+  name: "Capri1",
+  numGuests: 10,
+}
 
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+const rest2 = {
+  name: "La Piazza",
+  owner: 'vKali',
+}
 
-console.log(...newArr);
+//OR assigment operator
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10 //More concise way
+// rest2.numGuests ||= 10 //More concise way
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+//nuulish assigment operator(null or undefined)
+rest1.numGuests ??= 10 //More concise way
+rest2.numGuests ??= 10 //More concise way
 
-//Copy Array
-const mainMenuCopy = [...restaurant.mainMenu];
+console.log(rest1)
+console.log(rest2)
 
-//JOIN 2 ARRAYS
-const fullMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(fullMenu);
 
-//Iterables: arrays, strings, maps, sets. NOT objects
-const str = 'Jonas';
-const letters = [...str, ' ', 'S.'];
-console.log(letters);
 
-//Real World Example
-const ingridients = [
-  prompt('Lets´s make pasta ingredient 1 ?'),
-  prompt('ingredient 2 ?'),
-  prompt('ingredient 3 ?'),
-];
-
-console.log(ingridients);
-//Parameters to a function
-restaurant.orderPasta(...ingridients);
-
-//Objects
-const newResteurant = { foundenYear: 2024, ...restaurant, founder: 'Vinera' };
-console.log(newResteurant);
-
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'VINEIRA FOODS';
-console.log(restaurant.name);
-console.log(restaurantCopy.name);
 /*DESTRUCTING ARRAY */
 // const arr = [2, 3, 4];
 // const a = arr[0];
@@ -121,6 +107,12 @@ console.log(restaurantCopy.name);
 // const [p =1,q=1,r=1] = [8,9]
 // console.log(p,q,r)
 
+
+
+
+
+
+
 // /*DESTRUCTING OBJECTS  */
 // const {name,openingHours,categories} = restaurant
 // console.log(name, openingHours ,categories)
@@ -155,3 +147,123 @@ console.log(restaurantCopy.name);
 //   mainIndex: 2,
 //   starterIndex:2
 // })
+
+
+
+
+
+
+// /*SPREAD OPERATOR */
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
+
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+
+// console.log(...newArr);
+
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
+
+// //Copy Array
+// const mainMenuCopy = [...restaurant.mainMenu];
+
+// //JOIN 2 ARRAYS
+// const fullMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(fullMenu);
+
+// //Iterables: arrays, strings, maps, sets. NOT objects
+// const str = 'Jonas';
+// const letters = [...str, ' ', 'S.'];
+// console.log(letters);
+
+// //Real World Example
+// const ingridients = [
+//   prompt('Lets´s make pasta ingredient 1 ?'),
+//   prompt('ingredient 2 ?'),
+//   prompt('ingredient 3 ?'),
+// ];
+
+// //Old way to pass parameter to a function
+// restaurant.orderPasta(ingridients[0] , ingridients [1] , ingridients[2])
+// console.log(ingridients);
+
+// //Better way to pass Parameters to a function
+// restaurant.orderPasta(...ingridients);
+
+// //Objects
+// const newResteurant = { foundenYear: 2024, ...restaurant, founder: 'Vinera' };
+// console.log(newResteurant);
+
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'VINEIRA FOODS';
+// console.log(restaurant.name);
+// console.log(restaurantCopy.name);
+
+
+
+
+
+
+// /*REST PATTERNS AND PARAMETERS*/
+ 
+// // 1 - DESTRUCTING
+// //SPREAD, because on RIGHT side of = sign
+// const arr = [1,2,...[3,4]]
+
+// //REST, because on LEFT side of = sign
+// const [a,b,...others] =  [1,2,3,4,5] //the rest must be always the last element
+// console.log(a,b,others)
+
+// const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu]
+// console.log(pizza , risotto , others)
+
+// //Objects
+// const {sat,...weekdays} = restaurant.openingHours;
+// console.log(sat)
+// console.log(weekdays)
+
+// //2 - functions
+// //In this case i want passa mutiples parameters without a specif parameters number
+// const add = function(...numbers){
+  //   let sum = 0
+//   for(let i = 0 ; i < numbers.length ; i++){
+//     sum += numbers[i]
+   
+//   } console.log(sum)
+// }
+// add(1,2,6,6)
+
+// const x  = [23,5,7]
+// add(...x) // this is similar to write the entire array one by one: add(23,5,7)
+// restaurant.orderPizza("mushrooms",'pizza', 'avocado')
+
+
+
+
+
+
+// /*SHORT CIRCUITING ( && AND ||)*/
+// console.log("******OR*********")
+// //OR OPERATOR
+// //Use ANY detatype, return ny datatype , short-circuitng(if the 1st value is truth will return imediatily that value )
+// console.log(3 || 'Vini');
+// console.log('' || 'Vini'); //empy string is false
+// console.log(true || 0); // 0 is s false value
+// console.log(undefined || null); // undefined is a false value
+
+// console.log(undefined || 0 || '' || 'hello' || 23 || null)
+
+// // restaurant.numGuests = 4549
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
+// console.log(guests1)
+// //Better way to write and solve
+// //Why works? If i not defined any value to restaurant.numGuest the value is undefined (a false value), otherwise will return the next truth value (10)
+// const guests2 = restaurant.numGuests || 10
+
+// console.log("******AND*********") //same OR logic operator but works in a opposite way.
+// console.log(3 && 'Vini');
+// console.log('' && 'Vini'); //empy string is false
+// console.log(true && 0); // 0 is s false value
+// console.log(undefined && null); // undefined is a false value
