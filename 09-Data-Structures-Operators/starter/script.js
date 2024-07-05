@@ -50,12 +50,7 @@ const restaurant = {
   }
 };
 
-// OPTIONAL CHAINING
-if(restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open)
-
-//WITH OPTIONAL CHAINING
-console.log(restaurant.openingHours.mon?.open) 
-
+// 
 
 
 
@@ -389,3 +384,27 @@ console.log(restaurant.openingHours.mon?.open)
 
 
 
+// /*OPTIONAL CHAINING*/
+// if(restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open)
+
+// //WITH OPTIONAL CHAINING
+// console.log(restaurant.openingHours.mon?.open) //check if monday exists
+// console.log(restaurant.openingHours?.mon?.open) //check if openingHours exists and after check if mon exists
+
+// //REAL WORLD EXAMPLE
+// const days = ['mon','tue','wef','thu','fri','sat','sun']
+
+// for(const day of days){
+//   const open = restaurant.openingHours[day]?.open ?? 'closed' //eqauls to restaurant.openingHours.mon restaurant.openingHours.
+//   //tue ...
+//   console.log(`On ${day} we opena at ${open} `)
+// }
+
+// //Methods
+// console.log(restaurant.order?.(0,1) ?? 'Method does not exist')
+// console.log(restaurant.orderRissoto?.(0,1) ?? 'Method does not exist')
+
+// //Array
+// const users =[{name:'Vinicius', email:'hello@vinic'}]
+
+// console.log(users[0]?.name ?? 'User array empty')
