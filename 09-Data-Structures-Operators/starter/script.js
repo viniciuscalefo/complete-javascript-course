@@ -49,90 +49,40 @@ const restaurant = {
     console.log(otherIngredient)
   }
 };
-// SETS
 
-//sintaxe: const nameVariable = newSet(array or iterable)
+/*MAPS ITERATION */
+const question  = new Map([
+  ['question', 'Whats is the best proggraming language'],
+  [1,'C'],
+  [2,'Java'],
+  [3,'JavaScript'],
+  ['correct',3],
+  [true,'Correct'],
+  [false,'Try again'],
+])
 
-const ordersSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pizza',
-  'Rissoto',
-  'Pasta',
-  'Pizza'
-]);
+console.log(question)
 
-console.log(ordersSet)
-console.log(ordersSet.size)//Array´s lenght 
+//Converting Object to map
+console.log(Object.entries(openingHours))
+const hoursMap = new Map(Object.entries(openingHours))
 
-console.log(new Set('Vinicius')) //string is iterable to
-console.log(ordersSet.has('Pizza')) //similar to includes methods in array return True or false
-console.log(ordersSet.has('Bread'))
+console.log(hoursMap)
 
-ordersSet.add('Garlic bREAD') 
-ordersSet.add('Garlic bREAD') //only has added once
-ordersSet.delete('Rissoto') //delete one element
+//Quiz App
+//ITERATION on a MAP
+console.log(question.get('question'))
+for(const [key,value] of question){
+  if(typeof key == 'number') console.log(`Answer ${key} : ${value}`)
+}
 
-//ordersSet.clear() //clar all the set
-console.log(ordersSet)
+const answer  = +prompt ("Your answer")
+console.log(answer)
 
-for(const order of ordersSet) console.log(order) 
+console.log(question.get(question.get('correct') === answer))
 
-//Example
-const staff = ['Waiter','Chef','Waiter','Manager','Chef','Waiter']
-
-const staffUnique = new Set(staff)
-console.log(staffUnique)
-
-//converting a SET to a ARRAY
-const staffArray = [...staffUnique]
-console.log(staffArray)
-console.log(new Set(['Waiter','Chef','Waiter','Manager','Chef','Waiter']).size)
-
-console.log(new Set('Viniciuscalefoassarice').size) //How many letters has in my name 
-
-//*****MAPS*******
-//Maps are a lote more useful than sets
-
-//criating restaurant map
-const rest = new Map(); //easies way to crate a map, and more easier wat to fill is with the set
-rest.set('name','Classico Italiano')
-rest.set(1,'Firenze, Italy')
-console.log(rest.set(2,'Lisbon,Portugal'))
-
-rest
-.set('categories',['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
-.set('open',11)
-.set('close',23)
-.set(true,'We are open')
-.set(false,'We are closed :(')
-
-console.log(rest.get('name'))
-console.log(rest.get(true))
-
-const time = 21;
-console.log(rest.get(time > rest.get('open') && time < rest.get('close'))) //useing the bolean propertu to check if the rest is opne or close
-
-console.log(rest.has('categories'))
-rest.delete(2)
-// rest.clear()
-rest.set([1,2],'Test')
-console.log(rest)
-console.log(rest.size)
-
-console.log(rest.get([1,2])) //doestan work because they are not the same in memory. the tight way is to passa a variable
-
-const arr = [1,2]
-rest.set(arr,'Test')
-console.log(rest.get(arr))
-
-//query the dom abjects as key|value
-rest.set(document.querySelector('h1'),'heading')
-console.log(rest)
-
-
-
-
+//Converting Map to Array
+console.log([...question])
 
 
 
@@ -599,6 +549,88 @@ console.log(rest)
 // }
 
 
+
+
+// SETS
+
+// //sintaxe: const nameVariable = newSet(array or iterable)
+
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Rissoto',
+//   'Pasta',
+//   'Pizza'
+// ]);
+
+// console.log(ordersSet)
+// console.log(ordersSet.size)//Array´s lenght 
+
+// console.log(new Set('Vinicius')) //string is iterable to
+// console.log(ordersSet.has('Pizza')) //similar to includes methods in array return True or false
+// console.log(ordersSet.has('Bread'))
+
+// ordersSet.add('Garlic bREAD') 
+// ordersSet.add('Garlic bREAD') //only has added once
+// ordersSet.delete('Rissoto') //delete one element
+
+// //ordersSet.clear() //clar all the set
+// console.log(ordersSet)
+
+// for(const order of ordersSet) console.log(order) 
+
+// //Example
+// const staff = ['Waiter','Chef','Waiter','Manager','Chef','Waiter']
+
+// const staffUnique = new Set(staff)
+// console.log(staffUnique)
+
+// //converting a SET to a ARRAY
+// const staffArray = [...staffUnique]
+// console.log(staffArray)
+// console.log(new Set(['Waiter','Chef','Waiter','Manager','Chef','Waiter']).size)
+
+// console.log(new Set('Viniciuscalefoassarice').size) //How many letters has in my name 
+
+// //*****MAPS*******
+// //Maps are a lote more useful than sets
+
+// //criating restaurant map
+// const rest = new Map(); //easies way to crate a map, and more easier wat to fill is with the set
+// rest.set('name','Classico Italiano')
+// rest.set(1,'Firenze, Italy')
+// console.log(rest.set(2,'Lisbon,Portugal'))
+
+// rest
+// .set('categories',['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+// .set('open',11)
+// .set('close',23)
+// .set(true,'We are open')
+// .set(false,'We are closed :(')
+
+// console.log(rest.get('name'))
+// console.log(rest.get(true))
+
+// const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close'))) //useing the bolean propertu to check if the rest is opne or close
+
+// console.log(rest.has('categories'))
+// rest.delete(2)
+// // rest.clear()
+// rest.set([1,2],'Test')
+// console.log(rest)
+// console.log(rest.size)
+
+// console.log(rest.get([1,2])) //doestan work because they are not the same in memory. the tight way is to passa a variable
+
+// const arr = [1,2]
+// rest.set(arr,'Test')
+// console.log(rest.get(arr))
+
+// //query the dom abjects as key|value
+// rest.set(document.querySelector('h1'),'heading')
+// console.log(rest)
 
 
 
