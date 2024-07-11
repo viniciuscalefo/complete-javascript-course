@@ -50,39 +50,9 @@ const restaurant = {
   }
 };
 
-/*MAPS ITERATION */
-const question  = new Map([
-  ['question', 'Whats is the best proggraming language'],
-  [1,'C'],
-  [2,'Java'],
-  [3,'JavaScript'],
-  ['correct',3],
-  [true,'Correct'],
-  [false,'Try again'],
-])
 
-console.log(question)
 
-//Converting Object to map
-console.log(Object.entries(openingHours))
-const hoursMap = new Map(Object.entries(openingHours))
 
-console.log(hoursMap)
-
-//Quiz App
-//ITERATION on a MAP
-console.log(question.get('question'))
-for(const [key,value] of question){
-  if(typeof key == 'number') console.log(`Answer ${key} : ${value}`)
-}
-
-const answer  = +prompt ("Your answer")
-console.log(answer)
-
-console.log(question.get(question.get('correct') === answer))
-
-//Converting Map to Array
-console.log([...question])
 
 
 
@@ -634,3 +604,129 @@ console.log([...question])
 
 
 
+/*MAPS ITERATION */
+// const question  = new Map([
+//   ['question', 'Whats is the best proggraming language'],
+//   [1,'C'],
+//   [2,'Java'],
+//   [3,'JavaScript'],
+//   ['correct',3],
+//   [true,'Correct'],
+//   [false,'Try again'],
+// ])
+
+// console.log(question)
+
+// //Converting Object to map
+// console.log(Object.entries(openingHours))
+// const hoursMap = new Map(Object.entries(openingHours))
+
+// console.log(hoursMap)
+
+// //Quiz App
+// //ITERATION on a MAP
+// console.log(question.get('question'))
+// for(const [key,value] of question){
+//   if(typeof key == 'number') console.log(`Answer ${key} : ${value}`)
+// }
+
+// const answer  = +prompt ("Your answer")
+// console.log(answer)
+
+// console.log(question.get(question.get('correct') === answer))
+
+// //Converting Map to Array
+// console.log([...question])
+
+
+
+
+///////////////////////////////////////
+// // Coding Challenge #3
+
+// /* 
+// Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+// GOOD LUCK 😀
+// */
+
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+
+// // 1. Create an array 'events' of the different game events that happened (no duplicates).
+
+// // If i need a array we gonna destruct the resulting set of values of gameEvents Map.
+// // console.log(gameEvents.values())
+//  const events =  [...new Set(gameEvents.values())]
+//  console.log(events)
+
+// //  2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+// gameEvents.delete(64)
+// console.log(gameEvents)
+
+// // 3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+
+// console.log(`An event happened, on average, every ${90/gameEvents.size} minutes`)
+// //catching the last event
+// const time = [...gameEvents.keys()] //OR [...gameEvents.keys()].pop()
+// const lastTime = time[time.length-1]
+// console.log(`An event happened, on average, every ${lastTime/gameEvents.size} minutes`)
+
+
+// // 4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+//       // [FIRST HALF] 17: ⚽️ GOAL
+
+// for( const [key, value] of gameEvents){
+//   if(key < 45 && value == '⚽️ GOAL' ){
+//     console.log(`[FIRST HALF] ${key} : ${value}`)
+//   }if(key > 45 && value == '⚽️ GOAL' ){
+//     console.log(`[SECOND HALF] ${key} : ${value}`)
+//   }
+
+//   // const half = key > 45 && value ? 'SECOND' : 'FIRST'
+//   // console.log(`[${half} HALF] ${key} : ${value}`)
+// }
+
+// //*******STRINGS PT -1
+// const airline = 'TAP Air Portugal'
+// const plane = 'A320'
+// console.log(plane[0])
+// console.log(plane[1])
+// console.log(plane[2])
+// console.log(plane[3])
+// //LENGHT
+// console.log(airline.length)
+// console.log('B751'.length)
+// //INDEXOF AND LAST INDEX OF
+// console.log(airline.indexOf('r'))
+// console.log(airline.lastIndexOf('r'))
+// console.log(airline.indexOf('Portugal'))
+//  //SLICE
+// console.log(airline.slice(4))
+// console.log(airline.slice(4,7))
+
+// console.log(airline.slice(0, airline.indexOf(' ')))
+// console.log(airline.slice(0, airline.lastIndexOf(' ')+1))
+
+// console.log(airline.slice(-2))
+// console.log(airline.slice(1,-1))
+
+// const checkMiddleSeat = function(seat){
+//   //B and E are middle seats
+//   const s = seat.slice(-1)
+//   console.log((s=='B' || s=='E')? 'MIDDEL SEAT': 'NOT MIDDLE SEAT')
+// }
+// checkMiddleSeat('11B')
+// checkMiddleSeat('23C')
+// checkMiddleSeat('3E')
+// checkMiddleSeat('3e')
