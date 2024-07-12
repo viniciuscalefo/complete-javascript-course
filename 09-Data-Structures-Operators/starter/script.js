@@ -15,8 +15,7 @@ const openingHours = {
 };
 
 // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
 
 // Data needed for first part of the section
 const restaurant = {
@@ -49,65 +48,69 @@ const restaurant = {
     console.log(otherIngredient)
   }
 };
-//String Part 2
 
-const airline = 'TAP Air Portugal -'
+///////////////////////////////////////
+// Coding Challenge #4
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
 
-console.log(airline.toLowerCase())
-console.log(airline.toUpperCase())
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
 
-//Fix Capitalization in name
-const passenger = 'ViNiciuS'
-const passengerLowe = passenger.toLowerCase()
-const passengerCorrect = passengerLowe[0].toUpperCase() + passengerLowe.slice(1)
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
 
-console.log(passengerCorrect)
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
 
-// Comparing Email
-const email = 'hello@me.com'
-const login = '   HeLlo@me.cOm'
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
 
-const normalizeEmail = login.toLowerCase().trim()
-console.log(normalizeEmail)
+Afterwards, test with your own test data!
 
-//Replacing
+GOOD LUCK 😀
+*/
+// document.body.append(document.createElement('textarea'))
+// document.body.append(document.createElement('button'))
 
-const priceGB = '255,97$'
-const priceUS = priceGB.replace('$','U$').replace(',','.')
-console.log(priceUS)
 
-const announcement = 'All passengers come to barding door 23. Boarding door 23!'
+// const btn = document.querySelector('button')
+// btn.addEventListener('click', function(){
+//   const text = document.querySelector('textarea').value
+//    const words = text.split('\n')
 
-console.log(announcement.replaceAll('door','gate'))
+//    for(const [index,word] of words.entries()){
+//    const [first,second] = word.toLowerCase().trim().split('_')
+//    const output = `${first}${second.replace(
+//     second[0],
+//     second[0].toUpperCase()
+// )}`
+//    console.log(`${output.padEnd(20,)}${'V'.repeat(index+1)}`)
+   
+//   }
+// })
 
-//Using REGEX
-console.log(announcement.replace(/door/g,'gate'))
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-//Booleans
-const plane = 'Airbus A320neo'
-console.log(plane.includes('A320'))
-console.log(plane.includes('Boeing'))
-console.log(plane.startsWith('Air'))
+  for(const flight of flights.split('+')){
 
-if(plane.startsWith('Airbus') && plane.endsWith('neo')){
-  console.log('Part of the New Arbus family')
-}
+    const [type,from,to,time] = flight.split(';')
+ 
 
-//Practing exercise
-const checkBaggage = function(items){
-  const baggage = items.toLowerCase()
-  if(baggage.includes('knife')|| baggage.includes('gun')){
-    console.log('NOT ALOOWED')
-  }else{
-    console.log('ALLOWED')
+    const output = `${type.startsWith('_Delayed') ? '⭕ ':''}${type.replaceAll('_',' ')} from ${from.toUpperCase().slice(0,3)} to ${to.toUpperCase().slice(0,3)} ${time.replace(':','h')}`
+    console.log(output.padStart(35))
   }
-
-}
-checkBaggage('I have a laptop, some Food and a pocket Knife')
-checkBaggage('Got some snacks and a gun for protection')
-checkBaggage('Socks and camera')
-
-
+//[fly,start,end,time]
 
 
 
@@ -786,3 +789,67 @@ checkBaggage('Socks and camera')
 // checkMiddleSeat('23C')
 // checkMiddleSeat('3E')
 // checkMiddleSeat('3e')
+
+
+
+//String Part 2
+
+// const airline = 'TAP Air Portugal -'
+
+// console.log(airline.toLowerCase())
+// console.log(airline.toUpperCase())
+
+// //Fix Capitalization in name
+// const passenger = 'ViNiciuS'
+// const passengerLowe = passenger.toLowerCase()
+// const passengerCorrect = passengerLowe[0].toUpperCase() + passengerLowe.slice(1)
+
+// console.log(passengerCorrect)
+
+// // Comparing Email
+// const email = 'hello@me.com'
+// const login = '   HeLlo@me.cOm'
+
+// const normalizeEmail = login.toLowerCase().trim()
+// console.log(normalizeEmail)
+
+// //Replacing
+
+// const priceGB = '255,97$'
+// const priceUS = priceGB.replace('$','U$').replace(',','.')
+// console.log(priceUS)
+
+// const announcement = 'All passengers come to barding door 23. Boarding door 23!'
+
+// console.log(announcement.replaceAll('door','gate'))
+
+// //Using REGEX
+// console.log(announcement.replace(/door/g,'gate'))
+
+// //Booleans
+// const plane = 'Airbus A320neo'
+// console.log(plane.includes('A320'))
+// console.log(plane.includes('Boeing'))
+// console.log(plane.startsWith('Air'))
+
+// if(plane.startsWith('Airbus') && plane.endsWith('neo')){
+//   console.log('Part of the New Arbus family')
+// }
+
+// //Practing exercise
+// const checkBaggage = function(items){
+//   const baggage = items.toLowerCase()
+//   if(baggage.includes('knife')|| baggage.includes('gun')){
+//     console.log('NOT ALOOWED')
+//   }else{
+//     console.log('ALLOWED')
+//   }
+
+// }
+// checkBaggage('I have a laptop, some Food and a pocket Knife')
+// checkBaggage('Got some snacks and a gun for protection')
+// checkBaggage('Socks and camera')
+
+
+
+
