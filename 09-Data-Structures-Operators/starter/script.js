@@ -49,7 +49,63 @@ const restaurant = {
     console.log(otherIngredient)
   }
 };
+//String Part 2
 
+const airline = 'TAP Air Portugal -'
+
+console.log(airline.toLowerCase())
+console.log(airline.toUpperCase())
+
+//Fix Capitalization in name
+const passenger = 'ViNiciuS'
+const passengerLowe = passenger.toLowerCase()
+const passengerCorrect = passengerLowe[0].toUpperCase() + passengerLowe.slice(1)
+
+console.log(passengerCorrect)
+
+// Comparing Email
+const email = 'hello@me.com'
+const login = '   HeLlo@me.cOm'
+
+const normalizeEmail = login.toLowerCase().trim()
+console.log(normalizeEmail)
+
+//Replacing
+
+const priceGB = '255,97$'
+const priceUS = priceGB.replace('$','U$').replace(',','.')
+console.log(priceUS)
+
+const announcement = 'All passengers come to barding door 23. Boarding door 23!'
+
+console.log(announcement.replaceAll('door','gate'))
+
+//Using REGEX
+console.log(announcement.replace(/door/g,'gate'))
+
+//Booleans
+const plane = 'Airbus A320neo'
+console.log(plane.includes('A320'))
+console.log(plane.includes('Boeing'))
+console.log(plane.startsWith('Air'))
+
+if(plane.startsWith('Airbus') && plane.endsWith('neo')){
+  console.log('Part of the New Arbus family')
+}
+
+//Practing exercise
+const checkBaggage = function(items){
+  const baggage = items.toLowerCase()
+  if(baggage.includes('knife')|| baggage.includes('gun')){
+    console.log('NOT ALOOWED')
+  }else{
+    console.log('ALLOWED')
+  }
+
+}
+checkBaggage('I have a laptop, some Food and a pocket Knife')
+checkBaggage('Got some snacks and a gun for protection')
+checkBaggage('Socks and camera')
 
 
 
