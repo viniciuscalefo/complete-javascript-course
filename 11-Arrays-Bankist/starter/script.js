@@ -74,3 +74,67 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// FOREACH WITH MAPS AND SETS
+
+//Map
+currencies.forEach ((value,key,map)=>{
+  console.log(value,key,map)
+})
+
+//Set
+const currenciesUnique = new Set([''])
+
+
+//ARRAY METHODS
+
+// let arr = ['a','b','c','d','e']
+// console.log(arr.slice(2)) //not mutating the old array, returns a  new array but only with extracts parts
+// console.log(arr.slice(2,4)) //not include de end parameter
+// console.log(arr.slice(-1)) //negative paramter works to
+// console.log(arr.slice(1,-2))
+// console.log(arr.slice()) //make a copy
+// console.log([...arr]) //make a copy ot, both ways are correct
+
+// //Splice -> mutates the original array
+// // console.log(arr.splice(2))
+// arr.splice(-1) //remove de last element
+// console.log(arr)
+// console.log(arr.splice(1,2))
+// console.log(arr)  // -> splice delete other elements from original array
+
+// //Reverse
+// arr = ['a','b','c','d','e']
+// const arr2 = ['j','i','h','g','f']
+// console.log(arr2.reverse()) //mutate the original array
+// console.log(arr2)
+
+// //Concat
+// const letters = arr.concat(arr2)
+// console.log(letters)
+// console.log([...arr,...arr2]) //same result, and dont mutate the original array to
+
+// //Join
+// console.log(letters.join(' - '))
+
+
+//THE NEW AT METHOD
+// const arr = [23,11,64]
+// console.log(arr[0])
+// console.log(arr.at(0))
+
+// //Ways to get the last element
+// console.log(arr[arr.length-1])
+// console.log(arr.slice(-1)[0])
+// console.log(arr.at(-1))
+
+
+// FOREACH
+
+// movements.forEach((movement,index)=>{
+//   if(movement > 0){
+//     console.log(`Deposit: ${movement} index: ${index}`)
+//   } else{
+//     console.log(`Withdrew: ${movement} index ${index}`)
+//   }
+// })

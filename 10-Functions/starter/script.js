@@ -1,19 +1,15 @@
 'use strict';
 
+(function(){
+  const header = document.querySelector('h1')
+  header.style.color = 'red'
 
-//IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE)
-const runOnce = function(){
-  console.log('This will never run again')
-}
-runOnce();
+  document.querySelector('body').addEventListener('click',function(){
+    header.style.color = 'blue'
+  })
+})()
 
-//How we do that? wrap the function wth () and call immediatily
-(function (){
-  console.log('This will never run again')
-})();
 
-//Can do with arrow function to 
-( ()=> console.log('This ALSO run once')) ();
 
 // //HOW PASSING ARGUMENTS WORKS: VALUE VS REFERENCE
 // const flight = 'LH234'
@@ -280,3 +276,64 @@ GOOD LUCK 😀
 
 // poll.displayResults.call({answers:[5, 2, 3]})
 // poll.displayResults.call({answers:[1, 5, 3, 9, 6, 1]})
+
+
+
+
+
+// //IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE)
+// const runOnce = function(){
+//   console.log('This will never run again')
+// }
+// runOnce();
+
+// //How we do that? wrap the function wth () and call immediatily
+// (function (){
+//   console.log('This will never run again')
+// })();
+
+// //Can do with arrow function to 
+// ( ()=> console.log('This ALSO run once')) ();
+
+
+
+
+//CLOSURE
+// const secureBooking = function(){
+//   let passengerCount = 0; //can´t be acess from outside
+
+//    return function(){
+//     passengerCount++
+//     console.log(`${passengerCount} passengers`)
+//    }
+// }
+
+// const booker = secureBooking();
+// booker()
+// booker()
+// booker()
+
+// let f;
+
+// const g = function(){
+//   const a  = 23
+//   f = function(){
+//     console.log(a*2)
+//   }
+// }
+
+// const h = function(){
+//   const b = 777;
+//   f = function(){
+//     console.log(a*2)
+//   }
+// }
+
+// g()
+// f()
+// console.dir(f)
+
+// //Re-assigning f function
+// h()
+// f()
+// console.dir(f)
