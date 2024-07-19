@@ -108,12 +108,33 @@ const calcDisplaySummary = function(arr){
 
 
   const interest = arr
-  .filter(mov => mov < 0)
-  .reduce((acc,mov)=> acc+ mov , 0)
-  labelSumOut.textContent = `R$ ${Math.abs(interest)}`
+  .filter(mov => mov > 0)
+  .map(deposit => deposit * 1.2/100)
+  .filter((int,i,arr)=>{
+    return int >=  1
+  })
+  .reduce((acc,int)=>acc + int , 0)
+  labelSumInterest.textContent = `R$ ${Math.abs(interest)}`
 }
 
 calcDisplaySummary(account1.movements)
+
+//Event Handler
+let currentAccount;
+btnLogin.addEventListener('click',function(event){
+  event.preventDefault()
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
+  console.log(currentAccount)
+
+  if(currentAccount?.pin === Number(inputLoginPin.value)){
+    //Display UI and Welcome Message
+    labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`
+
+    //Display movements
+    //Display balance
+    //Displat movements
+  }
+})
 
 /////////////////////////////////////////////////
 // LECTURES
@@ -126,16 +147,8 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-//MAGIC OF CHAINING METHODS
- const eutToUsd = 1.1
+// 
 
- //Pipeline
- const totalDeposit = movements
- .filter(mov => mov>0)
- .map(mov=> mov * eutToUsd)
- .reduce((acc,mov)=> acc + mov ,0)
-
-console.log(totalDeposit)
 
 
 //ARRAY METHODS
@@ -334,3 +347,45 @@ GOOD LUCK 😀
 //   console.log(avg)
 // }
 // calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
+
+
+
+//MAGIC OF CHAINING METHODS
+//  const eutToUsd = 1.1
+
+//  //Pipeline
+//  const totalDeposit = movements
+//  .filter(mov => mov>0)
+//  .map(mov=> mov * eutToUsd)
+//  .reduce((acc,mov)=> acc + mov ,0)
+
+// console.log(totalDeposit)
+
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+
+
+// const calcAverageHumanAge = ages => ages
+//     .map(age=> age <=2 ? 2*age : 16+age*4)
+//     .filter(age=> age>18)
+//    .reduce((acc,age,arr)=> acc+age / arr.length ,0) / adults.length
+  
+//   calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
+
+
+//FIND METHOD
+// const withdrew = movements.find(mov => mov < 0)
+// console.log(withdrew)
+
+// const jessica = accounts.find(acc => acc.owner ==='Jéssica Davis')
+// console.log(jessica)
