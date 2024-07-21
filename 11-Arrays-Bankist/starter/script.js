@@ -136,7 +136,6 @@ let currentAccount;
 btnLogin.addEventListener('click',function(event){
   event.preventDefault()
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
-  console.log(currentAccount)
 
   if(currentAccount?.pin === Number(inputLoginPin.value)){
     //Display UI and Welcome Message
@@ -177,6 +176,41 @@ btnTransfer.addEventListener('click',function(e){
     }
 })
 
+btnLoan.addEventListener('click',function(e){
+  e.preventDefault()
+
+  const amount = Number(inputLoanAmount.value)
+  if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
+
+    //add the movement
+    currentAccount.movements.push(amount)
+    updateUI(currentAccount)
+  }
+
+  inputLoanAmount.value = ''
+})
+
+
+//Closing a account
+btnClose.addEventListener('click', function(e){
+  e.preventDefault()
+
+  
+  if(currentAccount.username == inputCloseUsername.value &&
+    currentAccount.pin == Number(inputClosePin.value)){
+      const index = accounts.findIndex(acc => acc.username === currentAccount.username )
+      
+      //Delete account
+      accounts.splice(index , 1)
+      
+      //Hide UI
+      containerApp.style.opacity = 0
+    }
+    //Cleaning the fileds
+    inputCloseUsername.value = inputClosePin.value = ''
+})
+
+
 /////////////////////////////////////////////////
 // LECTURES
 
@@ -190,6 +224,29 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // 
 
+//SOME
+console.log(movements)
+
+//Equality
+console.log(movements.includes(-130))
+// this will be the same as movement.some(mov => mov === -130)
+
+//Know if this account have any deposits ( any positve number above 0
+//Condition
+const anyDeposits = movements.some(mov => mov > 0)
+console.log(anyDeposits) // if any number satisfy the condition the function will return true
+
+
+//EVERY -> Only return true if all elements satisfy the conditions
+console.log(movements.every(acc => acc > 0))
+console.log(account4.movements.every(acc => acc > 0))
+
+
+//Separete Callback
+const deposit = mov => mov > 0
+console.log(movements.some(deposit))
+console.log(movements.every(deposit))
+console.log(movements.filter(deposit))
 
 
 //ARRAY METHODS
