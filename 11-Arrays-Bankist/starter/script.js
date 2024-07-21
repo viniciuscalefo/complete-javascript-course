@@ -75,7 +75,6 @@ const displayMovements = function(movements){
     containerMovements.insertAdjacentHTML('afterbegin',html) //Insert elements in container element, the afterbegin makes the order os elements
   })
 }
-displayMovements(account1.movements)
 
 const createUsername = function(accs){
   accs.forEach((acc)=>{
@@ -88,36 +87,49 @@ const createUsername = function(accs){
 }
 createUsername(accounts)
 
-const calcDisplayBalance = function(movements){
-  const balance = movements.reduce((acc,val)=> acc+val, 0)
-  labelBalance.textContent = `R$ ${balance}`
+const calcDisplayBalance = function(acc){
+  acc.balance = acc.movements.reduce((acc,val)=> acc+val, 0)
+  labelBalance.textContent = `R$ ${acc.balance}`
 }
-calcDisplayBalance(account1.movements)
 
-const calcDisplaySummary = function(arr){
-  const incomes = arr
+const calcDisplaySummary = function(acc){
+  const incomes = acc.movements
   .filter(mov => mov>0)
   .reduce((acc,mov)=> acc+ mov , 0)
   labelSumIn.textContent = `R$ ${incomes}`
 
 
-  const out = arr
+  const out = acc.movements
   .filter(mov => mov<0)
   .reduce((acc,mov)=> acc+ mov , 0)
   labelSumOut.textContent = `R$ ${Math.abs(out)}`
 
 
-  const interest = arr
+  const interest = acc.movements
   .filter(mov => mov > 0)
-  .map(deposit => deposit * 1.2/100)
-  .filter((int,i,arr)=>{
+  .map(deposit => deposit * acc.interestRate/100)
+  .filter((int,i,acc)=>{
     return int >=  1
   })
   .reduce((acc,int)=>acc + int , 0)
   labelSumInterest.textContent = `R$ ${Math.abs(interest)}`
 }
 
-calcDisplaySummary(account1.movements)
+//Updating the UI interface with 3 different functions
+const updateUI = function(acc){
+
+    //Display movements
+    displayMovements(acc.movements)
+
+    //Display balance
+    calcDisplayBalance(acc)
+
+    //Displat movements
+    calcDisplaySummary(acc)
+
+}
+
+
 
 //Event Handler
 let currentAccount;
@@ -128,12 +140,41 @@ btnLogin.addEventListener('click',function(event){
 
   if(currentAccount?.pin === Number(inputLoginPin.value)){
     //Display UI and Welcome Message
-    labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`
+    labelWelcome.textContent = `Welcome back ${currentAccount.owner.split(' ')[0]}`
+    containerApp.style.opacity = 100
 
-    //Display movements
-    //Display balance
-    //Displat movements
+    //Clear inputs Fields
+    inputLoginUsername.value = inputLoginPin.value = ''
+
+    inputLoginPin.blur()
+    
+    updateUI(currentAccount)
+
   }
+})
+
+
+//Implemting Tranfers between accounts
+btnTransfer.addEventListener('click',function(e){
+  e.preventDefault()
+  //Getting fields value
+  const amount = +inputTransferAmount.value
+  const receiverAcc = accounts.find( //find th receiver
+    acc => acc.username ===inputTransferTo.value
+  )
+  inputTransferAmount.value = inputTransferTo.value = ''
+
+  //Check
+  if(amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc.username !== currentAccount?.username){
+
+      //Doing the transfer
+      currentAccount.movements.push(-amount)
+      receiverAcc.movements.push(+amount)
+      updateUI(currentAccount)
+    }
 })
 
 /////////////////////////////////////////////////
