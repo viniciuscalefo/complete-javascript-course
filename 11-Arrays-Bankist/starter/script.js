@@ -62,9 +62,12 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 
-const displayMovements = function(movements){
+const displayMovements = function(movements,sort = false){
   containerMovements.innerHTML = '' //cleaning the display
-  movements.forEach((value,index)=>{
+  //using slice to create a copy, beacause e dont want change the original
+  const movs = sort ? movements.slice().sort((a,b) => a-b) : movements
+
+  movs.forEach((value,index)=>{
     const type = value > 0 ? 'deposit':'withdrawal' 
     const html = `
         <div class="movements__row">
@@ -211,6 +214,13 @@ btnClose.addEventListener('click', function(e){
 })
 
 
+let checkSort = false
+btnSort.addEventListener('click',function(e){
+  e.preventDefault()
+  displayMovements(currentAccount.movements,!checkSort)
+  checkSort = !checkSort
+})
+
 /////////////////////////////////////////////////
 // LECTURES
 
@@ -222,35 +232,55 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+//SORTING
+//Strings'
+const owners = ['Jonas','ZAck', 'Adam', 'Matha']
+console.log(owners.sort()) //mutates the original string
+console.log(owners) //mutates the original string
+
+//Numbers
+console.log(movements) //dint sort correctly
+
+//return < 0, A,B (keep order)
+//return > 0, B,A (switch order)
+//Ascending
+// movements.sort((a,b)=>{
+//   if(a > b)
+//     return 1
+//   if(a < b)
+//     return -1
+// })
+movements.sort((a,b)=> a - b)
+console.log(movements)
+
+//Descending
+// movements.sort((a,b)=>{
+  //   if(a > b)
+  //     return -1
+//   if(a < b)
+//     return 1
+// })
+movements.sort((a,b)=> b - a)
+console.log(movements)
 
 
-//FLAT ANF FLATMAP
-const arr = [[1,2,3],[4,5,6,7,8]]
-console.log(arr.flat()) //Only go onr level deep
+//Creating and Filling arrays
+const arr = [1,2,3,4,5,6,7]
+console.log(new Array(1,2,3,4,5,6,7))
 
-const arrDeep = [[[1,2],3],[4,[5,6]],7,8]
-console.log(arrDeep.flat(2)) //Number of nested array
+const x = new Array(7)
+console.log(x)
+// console.log(x.map(()=>5))
 
-//Getting all moviments in a nested array
-const accountMovements = accounts.map(acc => acc.movements)
-const allMovements = accountMovements.flat() //join all
-console.log(allMovements)
-//Sum all
-const overall = allMovements.reduce((acc,mov) => acc+mov , 0)
-console.log(overall)
+// x.fill(1)
+x.fill(1,3)
+console.log(x)
 
-//Chaining All - flat
-const overallBalance = accounts
-.map(acc => acc.movements)
-.flat()
-.reduce((acc,mov) => acc + mov ,0)
-console.log(overallBalance)
+arr.fill(23,4,6)
+console.log(arr)
 
-//Flat Map
-const overallBalance2 = accounts
-.flatMap(acc => acc.movements)
-.reduce((acc,mov) => acc + mov ,0)
-console.log(overallBalance)
+
+
 //ARRAY METHODS
 
 // let arr = ['a','b','c','d','e']
@@ -515,3 +545,35 @@ GOOD LUCK 😀
 // console.log(movements.some(deposit))
 // console.log(movements.every(deposit))
 // console.log(movements.filter(deposit))
+
+
+
+
+
+//FLAT ANF FLATMAP
+// const arr = [[1,2,3],[4,5,6,7,8]]
+// console.log(arr.flat()) //Only go onr level deep
+
+// const arrDeep = [[[1,2],3],[4,[5,6]],7,8]
+// console.log(arrDeep.flat(2)) //Number of nested array
+
+// //Getting all moviments in a nested array
+// const accountMovements = accounts.map(acc => acc.movements)
+// const allMovements = accountMovements.flat() //join all
+// console.log(allMovements)
+// //Sum all
+// const overall = allMovements.reduce((acc,mov) => acc+mov , 0)
+// console.log(overall)
+
+// //Chaining All - flat
+// const overallBalance = accounts
+// .map(acc => acc.movements)
+// .flat()
+// .reduce((acc,mov) => acc + mov ,0)
+// console.log(overallBalance)
+
+// //Flat Map
+// const overallBalance2 = accounts
+// .flatMap(acc => acc.movements)
+// .reduce((acc,mov) => acc + mov ,0)
+// console.log(overallBalance)
