@@ -222,33 +222,35 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// 
-
-//SOME
-console.log(movements)
-
-//Equality
-console.log(movements.includes(-130))
-// this will be the same as movement.some(mov => mov === -130)
-
-//Know if this account have any deposits ( any positve number above 0
-//Condition
-const anyDeposits = movements.some(mov => mov > 0)
-console.log(anyDeposits) // if any number satisfy the condition the function will return true
 
 
-//EVERY -> Only return true if all elements satisfy the conditions
-console.log(movements.every(acc => acc > 0))
-console.log(account4.movements.every(acc => acc > 0))
+//FLAT ANF FLATMAP
+const arr = [[1,2,3],[4,5,6,7,8]]
+console.log(arr.flat()) //Only go onr level deep
 
+const arrDeep = [[[1,2],3],[4,[5,6]],7,8]
+console.log(arrDeep.flat(2)) //Number of nested array
 
-//Separete Callback
-const deposit = mov => mov > 0
-console.log(movements.some(deposit))
-console.log(movements.every(deposit))
-console.log(movements.filter(deposit))
+//Getting all moviments in a nested array
+const accountMovements = accounts.map(acc => acc.movements)
+const allMovements = accountMovements.flat() //join all
+console.log(allMovements)
+//Sum all
+const overall = allMovements.reduce((acc,mov) => acc+mov , 0)
+console.log(overall)
 
+//Chaining All - flat
+const overallBalance = accounts
+.map(acc => acc.movements)
+.flat()
+.reduce((acc,mov) => acc + mov ,0)
+console.log(overallBalance)
 
+//Flat Map
+const overallBalance2 = accounts
+.flatMap(acc => acc.movements)
+.reduce((acc,mov) => acc + mov ,0)
+console.log(overallBalance)
 //ARRAY METHODS
 
 // let arr = ['a','b','c','d','e']
@@ -487,3 +489,29 @@ GOOD LUCK 😀
 
 // const jessica = accounts.find(acc => acc.owner ==='Jéssica Davis')
 // console.log(jessica)
+
+
+
+//SOME
+// console.log(movements)
+
+// //Equality
+// console.log(movements.includes(-130))
+// // this will be the same as movement.some(mov => mov === -130)
+
+// //Know if this account have any deposits ( any positve number above 0
+// //Condition
+// const anyDeposits = movements.some(mov => mov > 0)
+// console.log(anyDeposits) // if any number satisfy the condition the function will return true
+
+
+// //EVERY -> Only return true if all elements satisfy the conditions
+// console.log(movements.every(acc => acc > 0))
+// console.log(account4.movements.every(acc => acc > 0))
+
+
+// //Separete Callback
+// const deposit = mov => mov > 0
+// console.log(movements.some(deposit))
+// console.log(movements.every(deposit))
+// console.log(movements.filter(deposit))
