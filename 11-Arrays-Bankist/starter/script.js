@@ -279,6 +279,14 @@ console.log(x)
 arr.fill(23,4,6)
 console.log(arr)
 
+//Array.from
+const y = Array.from({length:7}, () => 1)
+console.log(y)
+
+const z = Array.from({lenght:7},(_, i) => i+1);
+console.log(z)
+
+
 
 
 //ARRAY METHODS
