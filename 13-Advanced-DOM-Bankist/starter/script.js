@@ -7,7 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
-
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -31,6 +32,58 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+
+//Scrolling
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coord = section1.getBoundingClientRect(); //getting the coordinates
+  console.log(s1coord);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Cuurent scroll(X/Y', window.pageXOffset, window.pageYOffset);
+
+  //Scrolling
+  //   window.scrollTo(
+  //   s1coord.left + window.pageXOffset,
+  //   s1coord.top + window.pageYOffset,)
+  // })
+
+  //Old School way
+  //   window.scrollTo({
+  //     lef: s1coord.left + window.pageXOffset,
+  //     top: s1coord.top + window.pageYOffset,
+  //     behavior: 'smooth',
+  //   });
+
+  //Modern Way
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+//Page NAVIGATION - in children
+// document.querySelectorAll(".nav__link").forEach(function(el){
+//   el.addEventListener('click',function(e){
+//     e.preventDefault();
+//     const id = this.getAttribute('href')
+//     const section = document.querySelector(id)
+//     section.scrollIntoView({behavior:'smooth'})
+//   })
+// })
+
+//Page NAVIGATION - in parent element
+//1-Add event listrnrt to common parent element
+//2- Determine what element originated the event
+
+document.querySelector(".nav__links").addEventListener('click',function(e){
+  e.preventDefault()
+
+  //Matching strategy
+  if(e.target.classList.contains("nav__link")){
+    const id = e.target.getAttribute('href')
+    const section = document.querySelector(id)
+    section.scrollIntoView({behavior:'smooth'})
+  }
+})
 
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
@@ -121,32 +174,64 @@ document.addEventListener('keydown', function (e) {
 
 //Smooth Scroll
 
-//1-Selecting Elements
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+// //1-Selecting Elements
+// const btnScrollTo = document.querySelector('.btn--scroll-to');
+// const section1 = document.querySelector('#section--1');
 
-//2-Adding the event listener
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coord = section1.getBoundingClientRect(); //getting the coordinates
-  console.log(s1coord);
+// //2-Adding the event listener
+// btnScrollTo.addEventListener('click', function (e) {
+//   const s1coord = section1.getBoundingClientRect(); //getting the coordinates
+//   console.log(s1coord);
 
-  console.log(e.target.getBoundingClientRect());
+//   console.log(e.target.getBoundingClientRect());
 
-  console.log('Cuurent scroll(X/Y', window.pageXOffset, window.pageYOffset);
+//   console.log('Cuurent scroll(X/Y', window.pageXOffset, window.pageYOffset);
 
-  //Scrolling
-  //   window.scrollTo(
-  //   s1coord.left + window.pageXOffset,
-  //   s1coord.top + window.pageYOffset,)
-  // })
+//   //Scrolling
+//   //   window.scrollTo(
+//   //   s1coord.left + window.pageXOffset,
+//   //   s1coord.top + window.pageYOffset,)
+//   // })
 
-  //Old School way
-  //   window.scrollTo({
-  //     lef: s1coord.left + window.pageXOffset,
-  //     top: s1coord.top + window.pageYOffset,
-  //     behavior: 'smooth',
-  //   });
+//   //Old School way
+//   //   window.scrollTo({
+//   //     lef: s1coord.left + window.pageXOffset,
+//   //     top: s1coord.top + window.pageYOffset,
+//   //     behavior: 'smooth',
+//   //   });
 
-  //Modern Way
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
+//   //Modern Way
+//   section1.scrollIntoView({ behavior: 'smooth' });
+// });
+
+// //DOM TRAVERSING
+// const h1 = document.querySelector('h1')
+
+// //Going downwards: child
+// console.log(h1.querySelectorAll(".highlight"))
+// console.log(h1.childNodes)
+// console.log(h1.children) //only wors to direct children
+// h1.firstElementChild.style.color = 'white'
+// h1.lastElementChild.style.color = 'red'
+
+
+// //Going upwards: parents
+// console.log(h1.parentNode)
+// console.log(h1.parentElement)
+
+// //You can tink in closest as the oppostite of querySelector, because query go deep as can in DOM tree, and the closes go more shallow as possible
+// h1.closest('.header').style.background = 'var(--gradient-secondary)'
+// h1.closest('h1').style.background = 'var(--gradient-secondary)'
+
+// //Going sideways - siblings
+// console.log(h1.previousElementSibling)
+// console.log(h1.nextElementSibling)
+
+// console.log(h1.previousSibling)
+// console.log(h1.nextSibling)
+
+// console.log(h1.parentElement.children); //all the sibling inlcude the el in self
+
+// [...h1.parentElement.children].forEach(function(el){
+//   if(el !== h1) el.style.transform = 'scale(0.5');
+// });
