@@ -81,7 +81,7 @@ btnScrollTo.addEventListener('click', function (e) {
 // })
 
 //Page NAVIGATION - in parent element
-//1-Add event listrnrt to common parent element
+//1-Add event listener to common parent element
 //2- Determine what element originated the event
 
 document.querySelector(".nav__links").addEventListener('click',function(e){
@@ -97,7 +97,7 @@ document.querySelector(".nav__links").addEventListener('click',function(e){
 
 
 
-//2. Adding event handelers
+//TABS
 //Using event delegations -> adding the event handeler to the parent element, in this case is tabs container
 tabsContainer.addEventListener('click',function(e){
   const clicked = e.target.closest('.operations__tab') //prevent clicking on the wrong element
@@ -157,6 +157,7 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 // }
 // const observer = new IntersectionObserver(observerCallback,observerOptions);
 // observer.observe(section1);
+
 const header = document.querySelector('.header')
 const navHeight = nav.getBoundingClientRect().height
 
@@ -176,6 +177,52 @@ const headerObserver = new IntersectionObserver(stickyNav,{
 
 headerObserver.observe(header)
 
+
+//Reveal on Scroll
+const allSections = document.querySelectorAll('.section')
+const revealSection = function(entries,observer){
+  const [entry] = entries
+
+  if(!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden')
+  observer.unobserve(entry.target)
+};
+
+const sectionObserver = new IntersectionObserver(revealSection,{  
+  root:null,
+  threshold: 0.15,
+});
+
+allSections.forEach(function(section){
+  sectionObserver.observe(section)
+  section.classList.add('section--hidden')
+});
+
+//LAZY LOADING IMAGE
+const imageTargets = document.querySelectorAll('img[data-src')
+const loadImg = function(entries,observer){
+  const [entry] = entries
+
+  if(!entry.isIntersecting)return;
+
+  //Replace src with data-src
+  entry.target.src = entry.target.dataset.src
+
+  entry.target.addEventListener('load',function(){
+    entry.target.classList.remove('lazy-img')
+  })
+  observer.unobserve(entry.target)
+}
+
+const imageObserver = new IntersectionObserver(loadImg,{
+  root:null,
+  threshold:0,
+  rootMargin:'-200px'
+})
+
+imageTargets.forEach(img=>{
+  imageObserver.observe(img)
+})
 
 
 ////////////////////////////////////////////////////////
