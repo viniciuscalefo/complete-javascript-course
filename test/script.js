@@ -4,31 +4,31 @@ const slider = function () {
   const slides = document.querySelectorAll('.slide');
   const btnLeft = document.querySelector('.slider__btn--left');
   const btnRight = document.querySelector('.slider__btn--right');
-  const dotContainer = document.querySelector('.dots');
+  // const dotContainer = document.querySelector('.dots');
 
   //Global Varibles
   let currentSlide = 0;
   const maxSlide = slides.length;
 
-  //Functions
-  const createDots = function () {
-    slides.forEach(function (_, i) {
-      dotContainer.insertAdjacentHTML(
-        'beforeend',
-        `<button class="dots__dot" data-slide="${i}"></button>`
-      );
-    });
-  };
+  // //Functions
+  // const createDots = function () {
+  //   slides.forEach(function (_, i) {
+  //     dotContainer.insertAdjacentHTML(
+  //       'beforeend',
+  //       `<button class="dots__dot" data-slide="${i}"></button>`
+  //     );
+  //   });
+  // };
 
-  const activeDot = function (slide) {
-    document
-      .querySelectorAll('.dots__dot')
-      .forEach(dot => dot.classList.remove('.dots__dot--active'));
+  // const activeDot = function (slide) {
+  //   document
+  //     .querySelectorAll('.dots__dot')
+  //     .forEach(dot => dot.classList.remove('.dots__dot--active'));
 
-    document
-      .querySelector(`.dots__dot[data-slide="${slide}"]`)
-      .classList.add('dots__dot--active');
-  };
+  //   document
+  //     .querySelector(`.dots__dot[data-slide="${slide}"]`)
+  //     .classList.add('dots__dot--active');
+  // };
 
   const goToSlide = function (slide) {
     slides.forEach(
@@ -44,7 +44,7 @@ const slider = function () {
       currentSlide++;
     }
     goToSlide(currentSlide);
-    activeDot(currentSlide);
+    // activeDot(currentSlide);
   };
 
   const prevSlide = function () {
@@ -54,12 +54,12 @@ const slider = function () {
       currentSlide--;
     }
     goToSlide(currentSlide);
-    activeDot(currentSlide);
+    // activeDot(currentSlide);
   };
   const init = function () {
     goToSlide(0);
-    createDots();
-    activeDot(0);
+    // createDots();
+    // activeDot(0);
   };
   init();
 
