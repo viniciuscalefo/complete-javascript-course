@@ -6,6 +6,7 @@ const tabsContent = document.querySelectorAll('.operations__content');
 
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
+  console.log(clicked)
 
   // Guard clause
   if (!clicked) return;
@@ -16,6 +17,8 @@ tabsContainer.addEventListener('click', function (e) {
 
   // Activate tab
   clicked.classList.add('operations__tab--active');
+  console.log(clicked.dataset)
+
 
   // Activate content area
   document
