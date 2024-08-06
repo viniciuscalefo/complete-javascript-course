@@ -1,9 +1,12 @@
 ///////////////////////////////////////
 // Tabbed component
+
+//////////// SELEÇÃO DE ELEMENTOS/////////////
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
+//////Adicionando evento ao pai/////////
 tabsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
 
